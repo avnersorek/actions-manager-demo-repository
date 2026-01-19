@@ -39,7 +39,8 @@ jobs:
             {
               "env": {
                 "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic",
-                "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1
+                "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1,
+                "GITHUB_TOKEN": "${{ secrets.CLAUDE_PAT }}"
               }
             }
           # Optional: Customize the trigger phrase (default: @claude)
