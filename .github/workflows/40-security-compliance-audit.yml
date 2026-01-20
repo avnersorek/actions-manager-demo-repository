@@ -1,0 +1,123 @@
+# Auto-generated workflow: security-compliance-audit
+# Category: security | Environment: ops
+# This workflow simulates a real DevOps operation
+
+name: Security Compliance Audit
+'on':
+  schedule:
+  - cron: 13 5 * * 0
+  workflow_dispatch: {}
+env:
+  WORKFLOW_NAME: security-compliance-audit
+  ENVIRONMENT: ops
+  FAILURE_RATE: '14'
+  LOG_LEVEL: WARN
+jobs:
+  security-1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Environment
+      run: 'echo "Setting up environment..."
+
+        echo "Workflow: $WORKFLOW_NAME"
+
+        echo "Environment: $ENVIRONMENT"
+
+        echo "Job: security-1"'
+    - name: Optimize Resources
+      run: 'echo "Optimizing resource allocation..."
+
+        sleep 3'
+    - name: Sync State
+      run: 'echo "Synchronizing state..."
+
+        sleep $((RANDOM % 3 + 1))'
+    - name: Finalize Job
+      run: "echo \"Job completion check...\"\nFAILURE_CHANCE=$((RANDOM % 100))\nif\
+        \ [ $FAILURE_CHANCE -lt 14 ]; then\n  echo \"Job failed: Random failure triggered\"\
+        \n  exit 1\nelse\n  echo \"Job completed successfully\"\nfi"
+    timeout-minutes: 1
+  security-2:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Environment
+      run: 'echo "Setting up environment..."
+
+        echo "Workflow: $WORKFLOW_NAME"
+
+        echo "Environment: $ENVIRONMENT"
+
+        echo "Job: security-2"'
+    - name: Connect to Service
+      run: 'echo "Establishing connection..."
+
+        sleep $((RANDOM % 3 + 1))'
+    - name: Optimize Resources
+      run: 'echo "Optimizing resource allocation..."
+
+        sleep 3'
+    - name: Finalize Job
+      run: "echo \"Job completion check...\"\nFAILURE_CHANCE=$((RANDOM % 100))\nif\
+        \ [ $FAILURE_CHANCE -lt 14 ]; then\n  echo \"Job failed: Random failure triggered\"\
+        \n  exit 1\nelse\n  echo \"Job completed successfully\"\nfi"
+    timeout-minutes: 1
+    needs:
+    - security-1
+  security-3:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Environment
+      run: 'echo "Setting up environment..."
+
+        echo "Workflow: $WORKFLOW_NAME"
+
+        echo "Environment: $ENVIRONMENT"
+
+        echo "Job: security-3"'
+    - name: Verify Results
+      run: 'echo "Verifying results..."
+
+        sleep $((RANDOM % 4 + 1))'
+    - name: Finalize Job
+      run: "echo \"Job completion check...\"\nFAILURE_CHANCE=$((RANDOM % 100))\nif\
+        \ [ $FAILURE_CHANCE -lt 14 ]; then\n  echo \"Job failed: Random failure triggered\"\
+        \n  exit 1\nelse\n  echo \"Job completed successfully\"\nfi"
+    timeout-minutes: 1
+    needs:
+    - security-2
+  security-4:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Environment
+      run: 'echo "Setting up environment..."
+
+        echo "Workflow: $WORKFLOW_NAME"
+
+        echo "Environment: $ENVIRONMENT"
+
+        echo "Job: security-4"'
+    - name: Validate Deployment
+      run: 'echo "Validating deployment state..."
+
+        sleep $((RANDOM % 4 + 2))'
+    - name: Connect to Service
+      run: 'echo "Establishing connection..."
+
+        sleep $((RANDOM % 3 + 1))'
+    - name: Cleanup Resources
+      run: 'echo "Cleaning up temporary resources..."
+
+        sleep 1'
+    - name: Finalize Job
+      run: "echo \"Job completion check...\"\nFAILURE_CHANCE=$((RANDOM % 100))\nif\
+        \ [ $FAILURE_CHANCE -lt 14 ]; then\n  echo \"Job failed: Random failure triggered\"\
+        \n  exit 1\nelse\n  echo \"Job completed successfully\"\nfi"
+    timeout-minutes: 1

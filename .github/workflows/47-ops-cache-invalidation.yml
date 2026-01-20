@@ -1,0 +1,40 @@
+# Auto-generated workflow: ops-cache-invalidation
+# Category: operations | Environment: maintenance
+# This workflow simulates a real DevOps operation
+
+name: Ops Cache Invalidation
+'on':
+  schedule:
+  - cron: 36 */8 * * *
+env:
+  WORKFLOW_NAME: ops-cache-invalidation
+  ENVIRONMENT: maintenance
+  FAILURE_RATE: '39'
+  LOG_LEVEL: DEBUG
+jobs:
+  operations-1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Environment
+      run: 'echo "Setting up environment..."
+
+        echo "Workflow: $WORKFLOW_NAME"
+
+        echo "Environment: $ENVIRONMENT"
+
+        echo "Job: operations-1"'
+    - name: Update Cache
+      run: 'echo "Updating cache..."
+
+        sleep 2'
+    - name: Verify Results
+      run: 'echo "Verifying results..."
+
+        sleep $((RANDOM % 4 + 1))'
+    - name: Finalize Job
+      run: "echo \"Job completion check...\"\nFAILURE_CHANCE=$((RANDOM % 100))\nif\
+        \ [ $FAILURE_CHANCE -lt 39 ]; then\n  echo \"Job failed: Random failure triggered\"\
+        \n  exit 1\nelse\n  echo \"Job completed successfully\"\nfi"
+    timeout-minutes: 1

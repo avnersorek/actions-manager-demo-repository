@@ -1,0 +1,80 @@
+# Auto-generated workflow: cd-deploy-production-ap-south
+# Category: deploy | Environment: production
+# This workflow simulates a real DevOps operation
+
+name: Cd Deploy Production Ap South
+'on':
+  schedule:
+  - cron: 3 21 * * 5
+concurrency:
+  group: cd-deploy-production-ap-south-group
+  cancel-in-progress: true
+env:
+  WORKFLOW_NAME: cd-deploy-production-ap-south
+  ENVIRONMENT: production
+  FAILURE_RATE: '10'
+  LOG_LEVEL: DEBUG
+jobs:
+  deploy-1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Environment
+      run: 'echo "Setting up environment..."
+
+        echo "Workflow: $WORKFLOW_NAME"
+
+        echo "Environment: $ENVIRONMENT"
+
+        echo "Job: deploy-1"'
+    - name: Validate Deployment
+      run: 'echo "Validating deployment state..."
+
+        sleep $((RANDOM % 4 + 2))'
+    - name: Connect to Service
+      run: 'echo "Establishing connection..."
+
+        sleep $((RANDOM % 3 + 1))'
+    - name: Generate Report
+      run: 'echo "Generating execution report..."
+
+        date +"%Y-%m-%d %H:%M:%S"'
+    - name: Finalize Job
+      run: "echo \"Job completion check...\"\nFAILURE_CHANCE=$((RANDOM % 100))\nif\
+        \ [ $FAILURE_CHANCE -lt 10 ]; then\n  echo \"Job failed: Random failure triggered\"\
+        \n  exit 1\nelse\n  echo \"Job completed successfully\"\nfi"
+    timeout-minutes: 1
+  deploy-2:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Environment
+      run: 'echo "Setting up environment..."
+
+        echo "Workflow: $WORKFLOW_NAME"
+
+        echo "Environment: $ENVIRONMENT"
+
+        echo "Job: deploy-2"'
+    - name: Run Pre-flight Checks
+      run: 'echo "Running pre-flight checks..."
+
+        sleep $((RANDOM % 5 + 2))'
+    - name: Validate Configuration
+      run: 'echo "Validating configuration files..."
+
+        python3 -c "import random; print(''Config valid:'', random.choice([True, False]))"'
+    - name: Run Diagnostics
+      run: 'echo "Running diagnostics..."
+
+        python3 -c "import random; print(''Health score:'', random.randint(70, 100),
+        ''%'')"'
+    - name: Finalize Job
+      run: "echo \"Job completion check...\"\nFAILURE_CHANCE=$((RANDOM % 100))\nif\
+        \ [ $FAILURE_CHANCE -lt 10 ]; then\n  echo \"Job failed: Random failure triggered\"\
+        \n  exit 1\nelse\n  echo \"Job completed successfully\"\nfi"
+    timeout-minutes: 1
+    needs:
+    - deploy-1

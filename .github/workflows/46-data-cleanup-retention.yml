@@ -1,0 +1,92 @@
+# Auto-generated workflow: data-cleanup-retention
+# Category: data | Environment: analytics
+# This workflow simulates a real DevOps operation
+
+name: Data Cleanup Retention
+'on':
+  schedule:
+  - cron: 56 0 9 * *
+  workflow_dispatch: {}
+concurrency:
+  group: data-cleanup-retention-group
+  cancel-in-progress: false
+env:
+  WORKFLOW_NAME: data-cleanup-retention
+  ENVIRONMENT: analytics
+  FAILURE_RATE: '39'
+  LOG_LEVEL: WARN
+jobs:
+  data-1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Environment
+      run: 'echo "Setting up environment..."
+
+        echo "Workflow: $WORKFLOW_NAME"
+
+        echo "Environment: $ENVIRONMENT"
+
+        echo "Job: data-1"'
+    - name: Finalize Job
+      run: "echo \"Job completion check...\"\nFAILURE_CHANCE=$((RANDOM % 100))\nif\
+        \ [ $FAILURE_CHANCE -lt 39 ]; then\n  echo \"Job failed: Random failure triggered\"\
+        \n  exit 1\nelse\n  echo \"Job completed successfully\"\nfi"
+    timeout-minutes: 1
+  data-2:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Environment
+      run: 'echo "Setting up environment..."
+
+        echo "Workflow: $WORKFLOW_NAME"
+
+        echo "Environment: $ENVIRONMENT"
+
+        echo "Job: data-2"'
+    - name: Finalize Job
+      run: "echo \"Job completion check...\"\nFAILURE_CHANCE=$((RANDOM % 100))\nif\
+        \ [ $FAILURE_CHANCE -lt 39 ]; then\n  echo \"Job failed: Random failure triggered\"\
+        \n  exit 1\nelse\n  echo \"Job completed successfully\"\nfi"
+    timeout-minutes: 1
+    strategy:
+      matrix:
+        instance:
+        - 1
+        - 2
+    needs:
+    - data-1
+  data-3:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Environment
+      run: 'echo "Setting up environment..."
+
+        echo "Workflow: $WORKFLOW_NAME"
+
+        echo "Environment: $ENVIRONMENT"
+
+        echo "Job: data-3"'
+    - name: Sync State
+      run: 'echo "Synchronizing state..."
+
+        sleep $((RANDOM % 3 + 1))'
+    - name: Validate Deployment
+      run: 'echo "Validating deployment state..."
+
+        sleep $((RANDOM % 4 + 2))'
+    - name: Finalize Job
+      run: "echo \"Job completion check...\"\nFAILURE_CHANCE=$((RANDOM % 100))\nif\
+        \ [ $FAILURE_CHANCE -lt 39 ]; then\n  echo \"Job failed: Random failure triggered\"\
+        \n  exit 1\nelse\n  echo \"Job completed successfully\"\nfi"
+    timeout-minutes: 1
+    strategy:
+      matrix:
+        instance:
+        - 1
+        - 2

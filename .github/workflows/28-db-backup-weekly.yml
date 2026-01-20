@@ -1,0 +1,36 @@
+# Auto-generated workflow: db-backup-weekly
+# Category: database | Environment: ops
+# This workflow simulates a real DevOps operation
+
+name: Db Backup Weekly
+'on':
+  schedule:
+  - cron: '*/20 * * * *'
+  workflow_dispatch: {}
+concurrency:
+  group: db-backup-weekly-group
+  cancel-in-progress: false
+env:
+  WORKFLOW_NAME: db-backup-weekly
+  ENVIRONMENT: ops
+  FAILURE_RATE: '32'
+  LOG_LEVEL: DEBUG
+jobs:
+  database-1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Setup Environment
+      run: 'echo "Setting up environment..."
+
+        echo "Workflow: $WORKFLOW_NAME"
+
+        echo "Environment: $ENVIRONMENT"
+
+        echo "Job: database-1"'
+    - name: Finalize Job
+      run: "echo \"Job completion check...\"\nFAILURE_CHANCE=$((RANDOM % 100))\nif\
+        \ [ $FAILURE_CHANCE -lt 32 ]; then\n  echo \"Job failed: Random failure triggered\"\
+        \n  exit 1\nelse\n  echo \"Job completed successfully\"\nfi"
+    timeout-minutes: 1
