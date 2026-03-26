@@ -2,7 +2,7 @@
 # Category: build | Environment: main
 # This workflow simulates a real DevOps operation
 
-name: Ci Build Frontend
+name: Ci Build Frontend Long
 'on':
   workflow_dispatch: {}
 env:
@@ -27,7 +27,7 @@ jobs:
     - name: Validate Deployment
       run: 'echo "Validating deployment state..."
 
-        sleep $((RANDOM % 4 + 2))'
+        sleep $((RANDOM % 4 + 30))'
     - name: Cleanup Resources
       run: 'echo "Cleaning up temporary resources..."
 
